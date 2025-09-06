@@ -295,6 +295,7 @@ footer {
 }
 
 
+
 .experience-card img {
   width: 150px;
   height: 150px;
@@ -341,4 +342,92 @@ footer {
   font-weight: bold;
   background: rgba(10,25,47,0.5);
   flex-shrink: 0;
+}
+
+/* Modal common style */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow:auto;
+  background-color: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content-wrapper {
+  background: #111f40;
+  padding: 2rem;
+  border-radius: 10px;
+  color: #e6f1ff;
+  max-height: 90%;
+  overflow-y: auto;
+}
+.modal .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: #ff7dee;
+  cursor: pointer;
+}
+
+/* Attendance Modal - similar to Admin Login */
+#attendanceModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+}
+
+#attendanceModal .modal-content {
+  background-color: #111;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 0 20px #64ffda;
+  color: #e6f1ff;
+}
+
+#attendanceModal input {
+  width: 90%;
+  padding: 8px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+#attendanceModal button {
+  background-color: #64ffda;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: 0.2s;
+}
+
+#attendanceModal button:hover {
+  background-color: #00cfae;
+}
+
+#attendanceModal .close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #64ffda;
 }
