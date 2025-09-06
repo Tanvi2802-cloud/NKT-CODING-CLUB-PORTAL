@@ -21,8 +21,12 @@
       <li><a href="#" class="nav-item" data-section="about">About</a></li>
       <li><a href="#" class="nav-item" data-section="events">Events</a></li>
       <li><a href="#" class="nav-item" data-section="teams">Teams</a></li>
+      <li><a href="#" class="nav-item" data-section="mentors">Mentors</a></li>
+      <li><a href="#" class="nav-item" data-section="heads">Heads</a></li>
       <li><a href="#" class="nav-item" data-section="experience">Experience</a></li>
       <li><a href="#" class="nav-item" data-section="contact">Contact</a></li>
+      <li><a href="#" class="nav-item" data-section="attendance">Attendance</a></li>
+    <li><a href="#" class="nav-item" onclick="openAdminLogin()">Admin</a></li>
     </ul>
   </nav>
 </header>
@@ -94,6 +98,73 @@
       <div id="memberCards" class="members-container"></div>
     </div>
   </section>
+
+  <!-- Mentors Section -->
+<section id="mentors" class="section">
+  <h2 class="section-title">Our Mentors</h2>
+  <div class="mentors-container" style="display:flex; gap:2rem; justify-content:center; flex-wrap:wrap;">
+    
+    <!-- Yash Mane -->
+    <div class="mentor-card" style="background:rgba(17,34,64,0.9); padding:1.5rem; border-radius:10px; text-align:center; width:200px;">
+      <div class="placeholder-photo" style="width:150px; height:150px; margin:auto; border:2px dashed #64ffda; display:flex; align-items:center; justify-content:center;">Not Available</div>
+      <h3 style="margin-top:1rem; color:#ff7dee;">Yash Mane</h3>
+      <p style="color:#e6f1ff;">Mentor</p>
+    </div>
+
+    <!-- Shashikant Mane -->
+    <div class="mentor-card" style="background:rgba(17,34,64,0.9); padding:1.5rem; border-radius:10px; text-align:center; width:200px;">
+      <div class="placeholder-photo" style="width:150px; height:150px; margin:auto; border:2px dashed #64ffda; display:flex; align-items:center; justify-content:center;">Not Available</div>
+      <h3 style="margin-top:1rem; color:#ff7dee;">Shashikant Mane</h3>
+      <p style="color:#e6f1ff;">Mentor</p>
+    </div>
+  </div>
+</section>
+
+<!-- Heads Section -->
+<section id="heads" class="section">
+  <h2 class="section-title">Our Heads</h2>
+  <div class="heads-container" style="display:flex; gap:2rem; justify-content:center; flex-wrap:wrap;">
+
+    <!-- Sunny - Frontend Head -->
+    <div class="head-card" style="background:rgba(17,34,64,0.9); padding:1.5rem; border-radius:10px; text-align:center; width:200px;">
+      <div class="placeholder-photo" style="width:150px; height:150px; margin:auto; border:2px dashed #64ffda; display:flex; align-items:center; justify-content:center; color:#e6f1ff; font-weight:bold;">
+        Not Available
+      </div>
+      <h3 style="margin-top:1rem; color:#ff7dee;">Sunny</h3>
+      <p style="color:#e6f1ff;">Frontend Head</p>
+    </div>
+
+    <!-- Shashikant Mane - Backend Head -->
+    <div class="head-card" style="background:rgba(17,34,64,0.9); padding:1.5rem; border-radius:10px; text-align:center; width:200px;">
+      <div class="placeholder-photo" style="width:150px; height:150px; margin:auto; border:2px dashed #64ffda; display:flex; align-items:center; justify-content:center; color:#e6f1ff; font-weight:bold;">
+        Not Available
+      </div>
+      <h3 style="margin-top:1rem; color:#ff7dee;">Shashikant Mane</h3>
+      <p style="color:#e6f1ff;">Backend Head</p>
+    </div>
+
+    <!-- Shashikant Mane - Database Head -->
+    <div class="head-card" style="background:rgba(17,34,64,0.9); padding:1.5rem; border-radius:10px; text-align:center; width:200px;">
+      <div class="placeholder-photo" style="width:150px; height:150px; margin:auto; border:2px dashed #64ffda; display:flex; align-items:center; justify-content:center; color:#e6f1ff; font-weight:bold;">
+        Not Available
+      </div>
+      <h3 style="margin-top:1rem; color:#ff7dee;">Shashikant Mane</h3>
+      <p style="color:#e6f1ff;">Database Head</p>
+    </div>
+
+    <!-- Yash Mane - AI/ML Head -->
+    <div class="head-card" style="background:rgba(17,34,64,0.9); padding:1.5rem; border-radius:10px; text-align:center; width:200px;">
+      <div class="placeholder-photo" style="width:150px; height:150px; margin:auto; border:2px dashed #64ffda; display:flex; align-items:center; justify-content:center; color:#e6f1ff; font-weight:bold;">
+        Not Available
+      </div>
+      <h3 style="margin-top:1rem; color:#ff7dee;">Yash Mane</h3>
+      <p style="color:#e6f1ff;">AI/ML Head</p>
+    </div>
+
+  </div>
+</section>
+
+
 
 <!-- Experience -->
 <section id="experience" class="section">
@@ -390,6 +461,86 @@
     </form>
   </section>
 </main>
+
+<!-- Attendance Section -->
+<div id="attendanceSection" class="section">
+  <h2>Attendance</h2>
+
+<!-- Attendance Login Modal -->
+<div id="attendanceModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeAttendanceLogin()">&times;</span>
+    <h2>Attendance Login</h2>
+    <input type="text" id="memberUsername" placeholder="Username" />
+    <input type="password" id="memberPassword" placeholder="Password" />
+    <div id="attendanceError" style="color:red; margin:5px 0;"></div>
+    <button onclick="memberLogin()">Login</button>
+  </div>
+</div>
+
+
+  <!-- Attendance Marking Form -->
+  <div id="attendanceMark" style="display:none;">
+    <h3>Mark Attendance</h3>
+    <p id="attendanceMsg" style="color:#64ffda;"></p>
+    <input type="text" id="attendanceName" placeholder="Enter your Name">
+    <input type="text" id="attendanceClass" placeholder="Enter your Class">
+    <button onclick="markAttendance()">Mark Attendance</button>
+  </div>
+</div>
+
+
+
+
+<!-- Admin Section -->
+<section id="admin-section" class="section">
+  <h2 class="section-title">Admin Panel</h2>
+  <button onclick="openAdminLogin()" style="padding:10px 20px; border:none; background:#64ffda; color:black; border-radius:5px; cursor:pointer;">Login as Admin</button>
+</section>
+
+<!-- Admin Login Modal -->
+<div id="adminModal" class="modal">
+  <span class="close" onclick="closeAdminLogin()">&times;</span>
+  <div class="modal-content-wrapper" style="max-width:500px; background:rgba(17,34,64,0.95); padding:2rem; border-radius:10px;">
+    <h2 style="color:#ff7dee;">Admin Login</h2>
+    <input type="text" id="adminUsername" placeholder="Username" style="width:100%; padding:10px; margin:10px 0; border-radius:5px;">
+    <input type="password" id="adminPassword" placeholder="Password" style="width:100%; padding:10px; margin:10px 0; border-radius:5px;">
+    <button onclick="adminLogin()" style="padding:10px 20px; background:#64ffda; border:none; border-radius:5px; cursor:pointer;">Login</button>
+    <p id="adminError" style="color:red; margin-top:10px;"></p>
+  </div>
+</div>
+
+<!-- Admin Dashboard Modal (after successful login) -->
+<div id="adminDashboard" class="modal">
+  <span class="close" onclick="closeAdminDashboard()">&times;</span>
+  <div class="modal-content-wrapper" style="max-width:800px; background:rgba(17,34,64,0.95); padding:2rem; border-radius:10px; overflow:auto;">
+    <h2 style="color:#ff7dee;">Attendance</h2>
+    <table style="width:100%; border-collapse:collapse; color:#e6f1ff; text-align:left;">
+      <thead>
+        <tr style="border-bottom:1px solid #64ffda;">
+          <th>Name</th>
+          <th>Team</th>
+          <th>Attendance Count</th>
+        </tr>
+      </thead>
+      <tbody id="attendanceTable">
+        <!-- Rows will be added via JS -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="adminModal" class="modal">
+  <span class="close" onclick="closeAdminLogin()">&times;</span>
+  <div class="modal-content-wrapper">
+    <h2 style="color:#ff7dee;">Admin Login</h2>
+    <input type="text" id="adminUsername" placeholder="Username">
+    <input type="password" id="adminPassword" placeholder="Password">
+    <button onclick="adminLogin()">Login</button>
+    <p id="adminError" style="color:red;"></p>
+  </div>
+</div>
+
 
 <footer>
   <p>© 2025 NKT Coding Club | All Rights Reserved</p>
