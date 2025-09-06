@@ -277,3 +277,52 @@ footer {
   margin-top: 2rem;
   border-top: 1px solid #64ffda44;
 }
+
+.experience-slideshow {
+  position: relative;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.experience-card {
+  display: none; /* all hidden initially for slideshow */
+  align-items: center; /* keeps photo & text aligned */
+  gap: 1.5rem;
+  background: rgba(17,34,64,0.9);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 4px solid #64ffda;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.experience-card img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #64ffda;
+  flex-shrink: 0;
+  display: block;
+  margin: 0;
+}
+
+.experience-text {
+  flex: 1;
+}
+
+.experience-text h3 {
+  margin: 0 0 0.5rem;
+  color: #ff7dee;
+}
+
+.experience-text p {
+  margin: 0;
+  color: #e6f1ff;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
