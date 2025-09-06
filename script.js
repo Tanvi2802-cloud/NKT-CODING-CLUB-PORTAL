@@ -145,3 +145,18 @@ function openProfileModal(member){
 }
 
 function closeModal(){modal.style.display="none";}
+
+// Experience slideshow
+let expIndex = 0;
+showExperienceSlides();
+
+function showExperienceSlides() {
+  let slides = document.querySelectorAll(".experience-card");
+  slides.forEach(slide => slide.style.display = "none");
+
+  expIndex++;
+  if (expIndex > slides.length) { expIndex = 1 }
+
+  slides[expIndex - 1].style.display = "flex"; // show current slide
+  setTimeout(showExperienceSlides, 3000); // change every 3 sec
+}
