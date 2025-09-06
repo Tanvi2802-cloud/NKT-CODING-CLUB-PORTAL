@@ -326,3 +326,19 @@ footer {
   from { opacity: 0; transform: translateX(30px); }
   to { opacity: 1; transform: translateX(0); }
 }
+
+/* Placeholder photo for members without images */
+.placeholder-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  border: 2px dashed #64ffda;
+  color: #64ffda;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  background: rgba(10,25,47,0.5);
+  flex-shrink: 0;
+}
