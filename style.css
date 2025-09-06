@@ -285,15 +285,15 @@ footer {
 }
 
 .experience-card {
-  display: none; /* all hidden initially for slideshow */
-  align-items: center; /* keeps photo & text aligned */
+  display: flex; /* important for left photo + right text */
+  align-items: center;
   gap: 1.5rem;
   background: rgba(17,34,64,0.9);
   padding: 1.5rem;
   border-radius: 10px;
   border-left: 4px solid #64ffda;
-  animation: fadeIn 1s ease-in-out;
 }
+
 
 .experience-card img {
   width: 150px;
