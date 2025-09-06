@@ -1,4 +1,4 @@
-// Section switching
+// ==================== Section Switching ====================
 function showSection(sectionId){
   document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
   document.getElementById(sectionId).classList.add("active");
@@ -13,17 +13,7 @@ document.querySelectorAll(".nav-item").forEach(link => {
   });
 });
 
-// Contact form
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("contactForm");
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    alert("✅ Thank you! Your message has been sent.");
-    form.reset();
-  });
-});
-
-// Typing effect
+// ==================== Typing Effect ====================
 const typingText = "Welcome to NKT Coding Club!";
 const typingElement = document.getElementById("typing-text");
 let index = 0;
@@ -36,7 +26,7 @@ function typeWriter() {
 }
 window.onload = () => { typingElement.textContent = ""; typeWriter(); };
 
-// Matrix effect
+// ==================== Matrix Background ====================
 const canvas = document.getElementById("matrixBackground");
 const ctx = canvas.getContext("2d");
 canvas.height = window.innerHeight; canvas.width = window.innerWidth;
@@ -58,7 +48,6 @@ function draw() {
   }
 }
 setInterval(draw, 33);
-
 window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
@@ -66,7 +55,17 @@ window.addEventListener("resize", () => {
   for(let x=0;x<columns;x++){drops[x]=1;}
 });
 
-// Team & Members
+// ==================== Contact Form ====================
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    alert("✅ Thank you! Your message has been sent.");
+    form.reset();
+  });
+});
+
+// ==================== Team & Member Modals ====================
 const members = [
   {
     name:"Kumbhar Tanvi Hanmant", team:"Frontend", role:"Frontend Developer", photo:"tanvi.jpeg",
@@ -146,7 +145,7 @@ function openProfileModal(member){
 
 function closeModal(){modal.style.display="none";}
 
-// Experience slideshow for multiple sections (Frontend & Backend)
+// ==================== Experience Slideshow ====================
 document.querySelectorAll(".experience-slideshow").forEach(slideshow => {
   let slides = slideshow.querySelectorAll(".experience-card");
   let index = 0;
@@ -158,6 +157,139 @@ document.querySelectorAll(".experience-slideshow").forEach(slideshow => {
     index = (index + 1) % slides.length;
   }
 
-  showSlide(); // show first slide immediately
-  setInterval(showSlide, 3000); // auto-slide every 3 sec
+  showSlide();
+  setInterval(showSlide, 3000);
+});
+
+// ==================== Member Attendance Section ====================
+let attendanceRecord = {}; // { "YYYY-MM-DD": [{name, class}] }
+
+function memberLogin() {
+  const username = document.getElementById("memberUsername").value;
+  const password = document.getElementById("memberPassword").value;
+  const error = document.getElementById("attendanceError");
+
+  if(username === "user123" && password === "member@123"){
+    document.getElementById("attendanceLogin").style.display = "none";
+    document.getElementById("attendanceMark").style.display = "block";
+    error.textContent = "";
+  } else {
+    error.textContent = "Invalid username or password!";
+  }
+}
+
+function markAttendance() {
+  const name = document.getElementById("attendanceName").value.trim();
+  const className = document.getElementById("attendanceClass").value.trim();
+  const msg = document.getElementById("attendanceMsg");
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+
+  if(!name || !className){
+    msg.textContent = "❌ Please enter both Name and Class!";
+    return;
+  }
+
+  if(!attendanceRecord[today]) attendanceRecord[today] = [];
+
+  // Check if already marked today
+  const exists = attendanceRecord[today].find(a => a.name === name && a.class === className);
+  if(exists){
+    msg.textContent = "✅ You have already marked your attendance today!";
+  } else {
+    attendanceRecord[today].push({ name, class: className });
+    msg.textContent = "🎉 Attendance marked for today!";
+    document.getElementById("attendanceName").value = "";
+    document.getElementById("attendanceClass").value = "";
+  }
+}
+
+// ==================== Admin Dashboard ====================
+function loadAttendanceData() {
+  const table = document.getElementById('attendanceTable');
+  table.innerHTML = '';
+
+  const dates = Object.keys(attendanceRecord).sort();
+  if(dates.length === 0){
+    const row = document.createElement('tr');
+    row.innerHTML = `<td colspan="3" style="text-align:center; color:#ff7dee;">No attendance recorded yet</td>`;
+    table.appendChild(row);
+    return;
+  }
+
+  dates.forEach(date => {
+    attendanceRecord[date].forEach(record => {
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${record.name}</td><td>${record.class}</td><td>${date}</td>`;
+      table.appendChild(row);
+    });
+  });
+}
+
+
+// ==================== Admin Section ====================
+function openAdminLogin() {
+  document.getElementById('adminModal').style.display = 'flex';
+}
+function closeAdminLogin() {
+  document.getElementById('adminModal').style.display = 'none';
+  document.getElementById('adminError').innerText = '';
+}
+
+function adminLogin() {
+  const username = document.getElementById('adminUsername').value;
+  const password = document.getElementById('adminPassword').value;
+  if(username === 'user123' && password === 'admin@123'){
+    closeAdminLogin();
+    openAdminDashboard();
+    loadAttendanceData();
+  } else {
+    document.getElementById('adminError').innerText = 'Invalid username or password!';
+  }
+}
+
+function openAdminDashboard() {
+  document.getElementById('adminDashboard').style.display = 'flex';
+}
+function closeAdminDashboard() {
+  document.getElementById('adminDashboard').style.display = 'none';
+}
+
+function loadAttendanceData() {
+  const table = document.getElementById('attendanceTable');
+  table.innerHTML = '';
+
+  const dates = Object.keys(attendanceRecord).sort();
+  if(dates.length === 0){
+    const row = document.createElement('tr');
+    row.innerHTML = `<td colspan="2" style="text-align:center; color:#ff7dee;">No attendance recorded yet</td>`;
+    table.appendChild(row);
+    return;
+  }
+
+  dates.forEach(date => {
+    const names = attendanceRecord[date];
+    names.forEach(name => {
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${name}</td><td>${date}</td>`;
+      table.appendChild(row);
+    });
+  });
+}
+
+// ==================== Attendance Modal Open/Close ====================
+
+// Open Attendance Login Modal
+function openAttendanceLogin() {
+  document.getElementById('attendanceModal').style.display = 'flex';
+}
+
+// Close Attendance Login Modal
+function closeAttendanceLogin() {
+  document.getElementById('attendanceModal').style.display = 'none';
+  document.getElementById('attendanceError').textContent = '';
+}
+
+// Call this function when Attendance section is clicked
+document.querySelector('.nav-item[data-section="attendance"]').addEventListener('click', () => {
+  openAttendanceLogin();
 });
